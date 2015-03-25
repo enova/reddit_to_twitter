@@ -7,6 +7,16 @@ class Youtuber
     create_playlist
   end
 
+  def connect_to_youtube(access_token, refresh_token)
+    YouTubeIt::OAuth2Client.new(
+      client_access_token:  access_token,
+      client_refresh_token: refresh_token,
+      client_id:            '865537355777-79hfvqidpc9i2e59hv5dirsqilcuqjk8.apps.googleusercontent.com',
+      client_secret:        'Hz0QHxq53hnxEG-M2HnnmvD3',
+      dev_key:              'AIzaSyAxWGLDTgCv3ftX8EoSW94P7dAgUN48m1Q'
+    )
+  end
+
   def create_playlist
     unless has_playlist?
       @client.add_playlist(
@@ -23,16 +33,6 @@ class Youtuber
     id    = url.match(regex)[1]
 
     @client.add_video_to_playlist(playlist_id, id)
-  end
-
-  def connect_to_youtube(access_token, refresh_token)
-    YouTubeIt::OAuth2Client.new(
-      client_access_token:  access_token,
-      client_refresh_token: refresh_token,
-      client_id:            '865537355777-79hfvqidpc9i2e59hv5dirsqilcuqjk8.apps.googleusercontent.com',
-      client_secret:        'Hz0QHxq53hnxEG-M2HnnmvD3',
-      dev_key:              'AIzaSyAxWGLDTgCv3ftX8EoSW94P7dAgUN48m1Q'
-    )
   end
 
   def playlists
