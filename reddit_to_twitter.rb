@@ -1,13 +1,10 @@
 require 'sinatra'
 require 'twitter'
 
-get '/' do
-  body 'posts only'
-end
-
 post '/' do
   client = connect_to_twitter
-  data = JSON.parse(params.to_json).to_hash
+  data   = JSON.parse(params.to_json).to_hash
+
   client.update(data['title'])
 end
 
