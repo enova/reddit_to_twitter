@@ -1,3 +1,3 @@
-require './reddit_to_twitter'
+require './server'
 $stdout.sync = true
 run Sinatra::Application
