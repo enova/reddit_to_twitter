@@ -4,7 +4,6 @@ require 'faraday'
 class Youtuber
   def initialize(access_token, refresh_token)
     @client = connect_to_youtube(access_token, refresh_token)
-    create_playlist
   end
 
   def connect_to_youtube(access_token, refresh_token)
@@ -29,10 +28,14 @@ class Youtuber
   def add_to_playlist(url)
     return unless url.contains? 'youtube'
 
-    regex = /youtube.com.*(?:\/|v=)([^&$]+)/
-    id    = url.match(regex)[1]
+    create_playlist
 
-    @client.add_video_to_playlist(playlist_id, id)
+    @client.add_video_to_playlist(playlist_id, youtube_id(url))
+  end
+
+  def youtube_id(url)
+    regex = /youtube.com.*(?:\/|v=)([^&$]+)/
+    url.match(regex)[1]
   end
 
   def playlists
