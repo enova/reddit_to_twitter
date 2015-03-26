@@ -1,7 +1,7 @@
 # reddit_to_twitter
 Very basic Sinatra application to take posts from IFTTT's Wordpress channel and posts them on Twitter.
 
-> Read the full instructions [here](https://github.com/enova/hacknight/README.md)
+> Read the full instructions [here](https://github.com/enova/hacknight/blob/master/README.md)
 
 #### Install
     bundle
